@@ -1,11 +1,378 @@
 <!DOCTYPE html>
-<html>
+<html lang="om">
 <head>
-  <title>Baha Biiftuu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baha Biiftuu — Aduu Bahaa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dawn-deep:   #1a0a00;
+      --dawn-ember:  #c1440e;
+      --dawn-amber:  #e8880a;
+      --dawn-gold:   #f5c842;
+      --dawn-sky:    #fde9c0;
+      --white:       #ffffff;
+      --text-main:   #1a0a00;
+      --text-soft:   #6b4c2a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem 5rem;
+      position: relative;
+      background: linear-gradient(
+        180deg,
+        #0d0510 0%,
+        #1a0a00 15%,
+        #c1440e 45%,
+        #e8880a 65%,
+        #f5c842 80%,
+        #fde9c0 100%
+      );
+      overflow: hidden;
+    }
+
+    /* horizon glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 38%;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, #f5c84288 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-sun {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fffbe0 30%, #f5c842 60%, #e8880a 100%);
+      box-shadow: 0 0 60px 20px #f5c84255, 0 0 120px 40px #e8880a33;
+      margin-bottom: 2rem;
+      animation: rise 1.8s cubic-bezier(0.22,1,0.36,1) both;
+      position: relative; z-index: 1;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(40px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    .hero-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #fde9c0aa;
+      margin-bottom: 0.75rem;
+      position: relative; z-index: 1;
+      animation: fadeUp 1s 0.3s both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--white);
+      text-shadow: 0 4px 32px #c1440e66;
+      position: relative; z-index: 1;
+      animation: fadeUp 1s 0.5s both;
+    }
+
+    .hero-subtitle {
+      margin-top: 1rem;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      font-weight: 300;
+      color: #fde9c0cc;
+      letter-spacing: 0.04em;
+      position: relative; z-index: 1;
+      animation: fadeUp 1s 0.7s both;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative; z-index: 1;
+      animation: fadeUp 1s 0.9s both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px #0005; }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--dawn-ember);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid #ffffff88;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dawn-ember);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--dawn-deep);
+      margin-bottom: 1rem;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-soft);
+      max-width: 620px;
+    }
+
+    /* ── DIVIDER ── */
+    .sunrise-divider {
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--dawn-ember), var(--dawn-amber), var(--dawn-gold));
+      border-radius: 3px;
+      margin: 0 auto;
+      max-width: 200px;
+      display: block;
+    }
+
+    /* ── PLATFORMS ── */
+    .platforms {
+      background: var(--dawn-sky);
+      padding: 5rem 1.5rem;
+    }
+    .platforms-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .platform-card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #e8880a11;
+    }
+    .platform-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px #e8880a22;
+    }
+
+    .platform-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .platform-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    /* ── SERVICES ── */
+    .service-list {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-item {
+      border-left: 3px solid var(--dawn-amber);
+      padding-left: 1rem;
+    }
+
+    .service-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .service-item p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dawn-deep);
+      color: #fde9c0aa;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      font-size: 0.85rem;
+    }
+    footer a {
+      color: var(--dawn-gold);
+      text-decoration: none;
+    }
+    footer .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    footer .footer-links {
+      margin: 1rem 0;
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
 </head>
 <body>
-  <h1>Baha Biiftuu - Aduu Bahaa</h1>
-  <p>Baga nagaan dhuftan!</p>
-  <a href="privacy-policy.html">Privacy Policy</a>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-sun"></div>
+    <p class="hero-label">Afaan Oromo Content Creator</p>
+    <h1 class="hero-title">Baha Biiftuu</h1>
+    <p class="hero-subtitle">Aduu Bahaa — Guyyaan Haaraan Dhufe</p>
+    <div class="hero-cta">
+      <a href="https://youtube.com/@BahaBiiftuu" class="btn btn-primary" target="_blank">YouTube Ilaali</a>
+      <a href="#platforms" class="btn btn-outline">Platforms Hunda</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-eyebrow">Eenyu Akka Taane</p>
+    <h2 class="section-title">Sagalee Afaan Oromoo<br/>Interneetii Irratti</h2>
+    <span class="sunrise-divider" style="margin:1rem 0 1.5rem;"></span>
+    <p class="section-body">
+      Baha Biiftuu — drama, gorsa jireenya, motiveshiinii fi komedii content Afaan Oromootiin uumna.
+      Maatii, dargaggoota fi hawaasa Oromoo hundaaf sagalee ta'uuf hojjenna.
+      Guyyaan haaraan ulaagaa haaraati — baha biiftuutti amanna.
+    </p>
+  </section>
+
+  <!-- PLATFORMS -->
+  <div class="platforms" id="platforms">
+    <div class="platforms-inner">
+      <p class="section-eyebrow">Iddoo Nu Argattan</p>
+      <h2 class="section-title">Platforms Keenya</h2>
+      <div class="platform-grid">
+        <a href="https://youtube.com/@BahaBiiftuu" class="platform-card" target="_blank">
+          <span class="platform-icon">▶️</span>
+          <span class="platform-name">YouTube</span>
+        </a>
+        <a href="https://facebook.com/BahaBiiftuu" class="platform-card" target="_blank">
+          <span class="platform-icon">📘</span>
+          <span class="platform-name">Facebook</span>
+        </a>
+        <a href="https://instagram.com/BahaBiiftuu" class="platform-card" target="_blank">
+          <span class="platform-icon">📸</span>
+          <span class="platform-name">Instagram</span>
+        </a>
+        <a href="https://t.me/BahaBiiftuu" class="platform-card" target="_blank">
+          <span class="platform-icon">✈️</span>
+          <span class="platform-name">Telegram</span>
+        </a>
+        <a href="https://x.com/BahaBiiftuu" class="platform-card" target="_blank">
+          <span class="platform-icon">🐦</span>
+          <span class="platform-name">X (Twitter)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-eyebrow">Tajaajilawwan Keenya</p>
+    <h2 class="section-title">Technology fi<br/>Business Online</h2>
+    <span class="sunrise-divider" style="margin:1rem 0 1.5rem;"></span>
+    <div class="service-list">
+      <div class="service-item">
+        <h3>Website Uumuu</h3>
+        <p>Business keetiif website professional, saffisaa fi mobile-friendly uumna.</p>
+      </div>
+      <div class="service-item">
+        <h3>E-Commerce</h3>
+        <p>Interneetii irratti gurguruu jalqabsiisuu — setup hanga launch.</p>
+      </div>
+      <div class="service-item">
+        <h3>AI Content</h3>
+        <p>AI meeshaalee fayyadamuun content uumuu fi maarkeetingii irratti gorsina.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-title">Baha Biiftuu</div>
+    <p>Aduu Bahaa — Guyyaan Haaraan Dhufe</p>
+    <div class="footer-links">
+      <a href="https://youtube.com/@BahaBiiftuu" target="_blank">YouTube</a>
+      <a href="https://facebook.com/BahaBiiftuu" target="_blank">Facebook</a>
+      <a href="https://t.me/BahaBiiftuu" target="_blank">Telegram</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+    <p>© 2025 Baha Biiftuu. Mirgi Qopheessaa Eegama.</p>
+  </footer>
+
 </body>
 </html>
