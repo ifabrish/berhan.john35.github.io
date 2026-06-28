@@ -1,1 +1,1 @@
-github.com/ifabrish/berhan.john35.github.io
+berhan.john35.github.io
